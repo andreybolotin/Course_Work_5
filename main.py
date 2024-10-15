@@ -1,26 +1,15 @@
-import os
-
-from dotenv import load_dotenv
 
 from src.DB_class import DBManager
+from src.config import config
 from src.get_vacancy import HH
 from src.utils import create_database, save_data_to_database
 
-load_dotenv()
-
-db_config = {
-    'user': os.getenv('POSTGRES_USER'),
-    'password': os.getenv('POSTGRES_PASSWORD'),
-    'host': os.getenv('POSTGRES_HOST'),
-    'port': os.getenv('POSTGRES_PORT'),
-    'dbname': os.getenv('POSTGRES_DB')
-}
 
 
 def main():
     """Функция для работы программы"""
 
-    params = {}
+    params = config()
 
     data_employer = HH().get_employers()
     data_vacancies = HH().load_vacancies()
